@@ -66,7 +66,7 @@ npm test
 ```
 
 # User flow diagram
-![user flow](../vaccination-appointment-booking/user_flow.png)
+![user flow](user_flow.png)
 
 # ER diagram
-![ER diagram](../vaccination-appointment-booking/ER_diagram.png)
+![ER diagram](ER_diagram.png)
