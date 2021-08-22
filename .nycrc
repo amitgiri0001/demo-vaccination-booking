@@ -1,0 +1,18 @@
+{
+  "include": [
+    "dist"
+  ],
+  "exclude": [
+    "dist/__tests__/",
+    "dist/index.js"
+  ],
+  "extension": [
+    ".js",
+    ".ts"
+  ],
+  "reporter": [
+    "text",
+    "lcov"
+  ],
+  "exclude-after-remap": false
+}
