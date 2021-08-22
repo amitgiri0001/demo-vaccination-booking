@@ -1,13 +1,17 @@
 import {inject} from '@loopback/core';
+import {repository} from '@loopback/repository';
 import {get, getModelSchemaRef, param, response} from '@loopback/rest';
 import moment from 'moment';
-import {Slots} from '../models';
+import {Centres, Slots} from '../models';
+import {CentresRepository} from '../repositories';
 import {BookingService} from '../services/booking.service';
 
 export class CentreController {
   constructor(
     @inject(BookingService.BINDING_NAME)
     private bookingService: BookingService,
+    @repository(CentresRepository)
+    private centresRepository: CentresRepository,
   ) {}
 
   @get('/centres/{centreId}/slots')
@@ -32,5 +36,21 @@ export class CentreController {
       centreId,
       moment(date).toDate(),
     );
+  }
+
+  @get('/centres')
+  @response(200, {
+    description: 'Array of Centres model instances',
+    content: {
+      'application/json': {
+        schema: {
+          type: 'array',
+          items: getModelSchemaRef(Centres, {includeRelations: true}),
+        },
+      },
+    },
+  })
+  async listCentres(): Promise<unknown> {
+    return this.centresRepository.find();
   }
 }

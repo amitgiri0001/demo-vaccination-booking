@@ -82,6 +82,33 @@ export class Centres extends Entity {
   })
   deletedAt?: string;
 
+  @property({
+    type: 'string',
+    postgresql: {
+      columnName: 'address',
+      dataType: 'character varying',
+      dataLength: null,
+      dataPrecision: null,
+      dataScale: null,
+      nullable: 'YES',
+    },
+  })
+  address?: string;
+
+  @property({
+    type: 'string',
+    required: true,
+    postgresql: {
+      columnName: 'vaccine_type',
+      dataType: 'character varying',
+      dataLength: null,
+      dataPrecision: null,
+      dataScale: null,
+      nullable: 'NO',
+    },
+  })
+  vaccineType: string;
+
   // Define well-known properties here
 
   // Indexer property to allow additional data

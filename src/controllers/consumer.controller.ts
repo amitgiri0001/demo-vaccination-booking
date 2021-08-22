@@ -6,7 +6,7 @@ import {
   param,
   post,
   requestBody,
-  response
+  response,
 } from '@loopback/rest';
 import {Consumers} from '../models';
 import {ConsumersRepository} from '../repositories';
