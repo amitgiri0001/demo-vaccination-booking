@@ -15,4 +15,20 @@ export class Memorydb extends VaccinationDbDataSource {
       ssl: false,
     });
   }
+
+  async beginTransaction() {
+    return {
+      commit: async () => {},
+      rollback: async () => {},
+    };
+  }
+
+  async execute() {
+    return [
+      {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        slot_id: 1,
+      },
+    ];
+  }
 }

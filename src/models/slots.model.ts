@@ -1,15 +1,10 @@
 import {Entity, model, property} from '@loopback/repository';
+import moment from 'moment';
 
 @model({
   settings: {
     idInjection: false,
-    postgresql: {
-      schema: 'public',
-      table: 'slots',
-    },
-    scope: {
-      deleteAt: null,
-    },
+    postgresql: {schema: 'public', table: 'slots'},
     strict: false,
   },
 })
@@ -31,11 +26,11 @@ export class Slots extends Entity {
   id: number;
 
   @property({
-    type: 'date',
+    type: 'string',
     required: true,
     postgresql: {
       columnName: 'start_at',
-      dataType: 'timestamp without time zone',
+      dataType: 'time without time zone',
       dataLength: null,
       dataPrecision: null,
       dataScale: null,
@@ -45,11 +40,11 @@ export class Slots extends Entity {
   startAt: string;
 
   @property({
-    type: 'date',
+    type: 'string',
     required: true,
     postgresql: {
       columnName: 'end_at',
-      dataType: 'timestamp without time zone',
+      dataType: 'time without time zone',
       dataLength: null,
       dataPrecision: null,
       dataScale: null,
@@ -59,7 +54,7 @@ export class Slots extends Entity {
   endAt: string;
 
   @property({
-    type: 'date',
+    type: 'string',
     required: true,
     postgresql: {
       columnName: 'created_at',
@@ -69,11 +64,12 @@ export class Slots extends Entity {
       dataScale: null,
       nullable: 'NO',
     },
+    default: moment().utc().format(),
   })
   createdAt: string;
 
   @property({
-    type: 'date',
+    type: 'string',
     required: true,
     postgresql: {
       columnName: 'updated_at',
@@ -83,11 +79,12 @@ export class Slots extends Entity {
       dataScale: null,
       nullable: 'NO',
     },
+    default: moment().utc().format(),
   })
   updatedAt: string;
 
   @property({
-    type: 'date',
+    type: 'string',
     postgresql: {
       columnName: 'deleted_at',
       dataType: 'timestamp without time zone',
