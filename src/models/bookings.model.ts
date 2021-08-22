@@ -116,11 +116,11 @@ export class Bookings extends Entity {
   deletedAt?: string;
 
   @property({
-    type: 'date',
+    type: 'string',
     required: true,
     postgresql: {
       columnName: 'booking_date',
-      dataType: 'timestamp without time zone',
+      dataType: 'date',
       dataLength: null,
       dataPrecision: null,
       dataScale: null,
@@ -128,6 +128,20 @@ export class Bookings extends Entity {
     },
   })
   bookingDate: string;
+
+  @property({
+    type: 'string',
+    required: true,
+    postgresql: {
+      columnName: 'status',
+      dataType: 'character varying',
+      dataLength: null,
+      dataPrecision: null,
+      dataScale: null,
+      nullable: 'NO',
+    },
+  })
+  status: string;
 
   // Define well-known properties here
 
