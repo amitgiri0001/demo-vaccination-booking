@@ -71,7 +71,6 @@ export class Consumers extends Entity {
 
   @property({
     type: 'number',
-    required: true,
     scale: 0,
     id: 1,
     postgresql: {
