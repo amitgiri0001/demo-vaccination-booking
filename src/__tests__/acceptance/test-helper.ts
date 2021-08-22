@@ -1,7 +1,8 @@
 import {BindingScope} from '@loopback/core';
 import {
-  Client, createRestAppClient,
-  givenHttpServerConfig
+  Client,
+  createRestAppClient,
+  givenHttpServerConfig,
 } from '@loopback/testlab';
 import {VaccinationApp} from '../..';
 import {Memorydb} from '../fixtures/datasources/memorydb.datasource';
@@ -24,7 +25,7 @@ export async function setupApplication(): Promise<AppWithClient> {
    * and uses the one which we explicitly provide for testing.
    *
    */
-   app.bootOptions = {
+  app.bootOptions = {
     ...app.bootOptions,
     /**
      * Setting up new in-memory dataSource to make the test run faster.

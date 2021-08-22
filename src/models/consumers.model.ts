@@ -85,6 +85,20 @@ export class Consumers extends Entity {
   })
   id: number;
 
+  @property({
+    type: 'string',
+    required: true,
+    postgresql: {
+      columnName: 'national_id',
+      dataType: 'character varying',
+      dataLength: null,
+      dataPrecision: null,
+      dataScale: null,
+      nullable: 'NO',
+    },
+  })
+  nationalId: string;
+
   @hasMany(() => Bookings, {keyTo: 'consumerId'})
   bookings: Bookings[];
   // Define well-known properties here

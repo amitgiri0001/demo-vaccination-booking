@@ -6,7 +6,7 @@ import {
   param,
   post,
   requestBody,
-  response,
+  response
 } from '@loopback/rest';
 import {Consumers} from '../models';
 import {ConsumersRepository} from '../repositories';
@@ -32,16 +32,16 @@ export class ConsumerController {
         'application/json': {
           schema: getModelSchemaRef(Consumers, {
             title: 'NewConsumers',
-            exclude: ['createdAt', 'updatedAt', 'deletedAt'],
+            exclude: ['createdAt', 'updatedAt', 'deletedAt', 'id'],
           }),
         },
       },
     })
-    consumers: Consumers,
+    consumers: Omit<Consumers, 'id'>,
   ): Promise<Consumers> {
     const isExistingConsumer = await this.consumersRepository.findOne({
       where: {
-        id: consumers.id,
+        nationalId: consumers.nationalId,
       },
       include: [
         {
