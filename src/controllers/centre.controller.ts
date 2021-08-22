@@ -29,7 +29,7 @@ export class CentreController {
   async find(
     @param.path.number('centreId')
     centreId: number,
-    @param.query.dateTime('date')
+    @param.query.date('date')
     date: Date,
   ): Promise<unknown> {
     return this.bookingService.getSlotsByCentre(
