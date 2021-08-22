@@ -1,4 +1,5 @@
 import {Entity, model, property} from '@loopback/repository';
+import moment from 'moment';
 
 @model({
   settings: {
@@ -12,7 +13,6 @@ import {Entity, model, property} from '@loopback/repository';
 export class Centres extends Entity {
   @property({
     type: 'number',
-    required: true,
     scale: 0,
     id: 1,
     postgresql: {
@@ -51,6 +51,7 @@ export class Centres extends Entity {
       dataScale: null,
       nullable: 'NO',
     },
+    default: moment().utc().format(),
   })
   createdAt: string;
 
@@ -65,6 +66,7 @@ export class Centres extends Entity {
       dataScale: null,
       nullable: 'NO',
     },
+    default: moment().utc().format(),
   })
   updatedAt: string;
 
