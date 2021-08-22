@@ -131,7 +131,6 @@ export class Bookings extends Entity {
 
   @property({
     type: 'string',
-    required: true,
     postgresql: {
       columnName: 'status',
       dataType: 'character varying',
@@ -141,7 +140,7 @@ export class Bookings extends Entity {
       nullable: 'NO',
     },
   })
-  status: string;
+  status?: string;
 
   // Define well-known properties here
 
