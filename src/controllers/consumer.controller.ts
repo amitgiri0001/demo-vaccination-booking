@@ -17,12 +17,32 @@ export class ConsumerController {
     public consumersRepository: ConsumersRepository,
   ) {}
 
-  @post('/consumers')
-  @response(200, {
-    description: 'Consumers model instance',
+  @post('/consumers', {
+    tags: ['Consumer'],
+    responses: {
+      '200': {
+        description: 'Consumers model instance',
+        content: {
+          'application/json': {
+            schema: getModelSchemaRef(Consumers, {includeRelations: true}),
+          },
+        },
+      },
+    },
+  })
+  @response(400, {
+    description: 'Consumer identity already exits.',
     content: {
       'application/json': {
-        schema: getModelSchemaRef(Consumers, {includeRelations: true}),
+        schema: {
+          type: 'object',
+          properties: {
+            code: {
+              type: 'string',
+              enum: ['CONSUMER_IDENTITY_EXITS'],
+            },
+          },
+        },
       },
     },
   })
@@ -62,12 +82,16 @@ export class ConsumerController {
     return this.consumersRepository.create(consumers);
   }
 
-  @get('/consumers/{id}')
-  @response(200, {
-    description: 'Consumers model instance',
-    content: {
-      'application/json': {
-        schema: getModelSchemaRef(Consumers, {includeRelations: true}),
+  @get('/consumers/{id}', {
+    tags: ['Consumer'],
+    responses: {
+      '200': {
+        description: 'Consumers model instance',
+        content: {
+          'application/json': {
+            schema: getModelSchemaRef(Consumers, {includeRelations: true}),
+          },
+        },
       },
     },
   })

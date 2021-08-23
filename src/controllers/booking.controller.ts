@@ -15,10 +15,46 @@ export class BookingController {
     private bookingService: BookingService,
   ) {}
 
-  @post('/bookings')
-  @response(200, {
-    description: 'Bookings model instance',
-    content: {'application/json': {schema: getModelSchemaRef(Bookings)}},
+  @post('/bookings', {
+    tags: ['Bookings'],
+    responses: {
+      '200': {
+        description: 'Bookings model instance',
+        content: {'application/json': {schema: getModelSchemaRef(Bookings)}},
+      },
+    },
+  })
+  @response(409, {
+    description: 'The slot got full before the request.',
+    content: {
+      'application/json': {
+        schema: {
+          type: 'object',
+          properties: {
+            code: {
+              type: 'string',
+              enum: ['SLOT_FULL'],
+            },
+          },
+        },
+      },
+    },
+  })
+  @response(400, {
+    description: 'Consumer already has a booking.',
+    content: {
+      'application/json': {
+        schema: {
+          type: 'object',
+          properties: {
+            code: {
+              type: 'string',
+              enum: ['ALREADY_BOOKED'],
+            },
+          },
+        },
+      },
+    },
   })
   async create(
     @requestBody({

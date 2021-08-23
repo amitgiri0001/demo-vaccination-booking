@@ -1,6 +1,6 @@
 import {inject} from '@loopback/core';
 import {repository} from '@loopback/repository';
-import {get, getModelSchemaRef, param, response} from '@loopback/rest';
+import {get, getModelSchemaRef, param} from '@loopback/rest';
 import moment from 'moment';
 import {Centres, Slots} from '../models';
 import {CentresRepository} from '../repositories';
@@ -14,14 +14,18 @@ export class CentreController {
     private centresRepository: CentresRepository,
   ) {}
 
-  @get('/centres/{centreId}/slots')
-  @response(200, {
-    description: 'Array of Centres model instances',
-    content: {
-      'application/json': {
-        schema: {
-          type: 'array',
-          items: getModelSchemaRef(Slots, {includeRelations: true}),
+  @get('/centres/{centreId}/slots', {
+    tags: ['Centre'],
+    responses: {
+      '200': {
+        description: 'Array of Centres model instances',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'array',
+              items: getModelSchemaRef(Slots, {includeRelations: true}),
+            },
+          },
         },
       },
     },
@@ -38,14 +42,18 @@ export class CentreController {
     );
   }
 
-  @get('/centres')
-  @response(200, {
-    description: 'Array of Centres model instances',
-    content: {
-      'application/json': {
-        schema: {
-          type: 'array',
-          items: getModelSchemaRef(Centres, {includeRelations: true}),
+  @get('/centres', {
+    tags: ['Centre'],
+    responses: {
+      '200': {
+        description: 'Array of Centres model instances',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'array',
+              items: getModelSchemaRef(Centres, {includeRelations: true}),
+            },
+          },
         },
       },
     },

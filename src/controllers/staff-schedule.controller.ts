@@ -1,5 +1,5 @@
 import {repository} from '@loopback/repository';
-import {getModelSchemaRef, post, response} from '@loopback/rest';
+import {getModelSchemaRef, post} from '@loopback/rest';
 import moment from 'moment';
 import {StaffSchedules} from '../models';
 import {
@@ -21,10 +21,16 @@ export class StaffScheduleController {
   /**
    * This endpoint is just to generate the seed data.
    */
-  @post('/service/staff-schedules/init')
-  @response(200, {
-    description: 'StaffSchedules model instance',
-    content: {'application/json': {schema: getModelSchemaRef(StaffSchedules)}},
+  @post('/service/staff-schedules/init', {
+    tags: ['ServiceEndpoints', 'Staff'],
+    responses: {
+      '200': {
+        description: 'StaffSchedules model instance',
+        content: {
+          'application/json': {schema: getModelSchemaRef(StaffSchedules)},
+        },
+      },
+    },
   })
   async create(): Promise<StaffSchedules[]> {
     const allCentres = await this.centresRepository.find();
