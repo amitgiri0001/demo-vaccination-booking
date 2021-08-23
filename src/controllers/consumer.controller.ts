@@ -6,7 +6,6 @@ import {
   param,
   post,
   requestBody,
-  response,
 } from '@loopback/rest';
 import {Consumers} from '../models';
 import {ConsumersRepository} from '../repositories';
@@ -28,18 +27,18 @@ export class ConsumerController {
           },
         },
       },
-    },
-  })
-  @response(400, {
-    description: 'Consumer identity already exits.',
-    content: {
-      'application/json': {
-        schema: {
-          type: 'object',
-          properties: {
-            code: {
-              type: 'string',
-              enum: ['CONSUMER_IDENTITY_EXITS'],
+      '400': {
+        description: 'Consumer identity already exits.',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+              properties: {
+                code: {
+                  type: 'string',
+                  enum: ['CONSUMER_IDENTITY_EXITS'],
+                },
+              },
             },
           },
         },

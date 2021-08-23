@@ -1,11 +1,5 @@
 import {inject} from '@loopback/core';
-import {
-  getModelSchemaRef,
-  HttpErrors,
-  post,
-  requestBody,
-  response,
-} from '@loopback/rest';
+import {getModelSchemaRef, HttpErrors, post, requestBody} from '@loopback/rest';
 import {Bookings} from '../models';
 import {BookingService} from '../services';
 
@@ -22,34 +16,34 @@ export class BookingController {
         description: 'Bookings model instance',
         content: {'application/json': {schema: getModelSchemaRef(Bookings)}},
       },
-    },
-  })
-  @response(409, {
-    description: 'The slot got full before the request.',
-    content: {
-      'application/json': {
-        schema: {
-          type: 'object',
-          properties: {
-            code: {
-              type: 'string',
-              enum: ['SLOT_FULL'],
+      '409': {
+        description: 'The slot got full before the request.',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+              properties: {
+                code: {
+                  type: 'string',
+                  enum: ['SLOT_FULL'],
+                },
+              },
             },
           },
         },
       },
-    },
-  })
-  @response(400, {
-    description: 'Consumer already has a booking.',
-    content: {
-      'application/json': {
-        schema: {
-          type: 'object',
-          properties: {
-            code: {
-              type: 'string',
-              enum: ['ALREADY_BOOKED'],
+      '400': {
+        description: 'Consumer already has a booking.',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+              properties: {
+                code: {
+                  type: 'string',
+                  enum: ['ALREADY_BOOKED'],
+                },
+              },
             },
           },
         },
