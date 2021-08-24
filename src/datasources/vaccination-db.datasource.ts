@@ -5,7 +5,7 @@ let config = {
   name: 'vaccination_db',
   connector: 'postgresql',
   host: '',
-  port: '',
+  port: 5432,
   user: '',
   password: '',
   database: '',
@@ -21,7 +21,6 @@ if (process.env.NODE_ENV === 'local') {
   config = {...config, ...dbConfig};
 } else {
   config.host = process.env.HOST as string;
-  config.port = process.env.PORT as string;
   config.user = process.env.USER as string;
   config.password = process.env.PASSWORD as string;
   config.database = process.env.DATABASE as string;
