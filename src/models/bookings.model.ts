@@ -1,5 +1,8 @@
-import {Entity, model, property} from '@loopback/repository';
+import {belongsTo, Entity, model, property} from '@loopback/repository';
 import moment from 'moment';
+import {Centres} from './centres.model';
+import {Consumers} from './consumers.model';
+import {Slots} from './slots.model';
 
 @model({
   settings: {
@@ -25,52 +28,6 @@ export class Bookings extends Entity {
     },
   })
   id?: number;
-
-  @property({
-    type: 'number',
-    required: true,
-    scale: 0,
-    postgresql: {
-      columnName: 'slot_id',
-      dataType: 'integer',
-      dataLength: null,
-      dataPrecision: null,
-      dataScale: 0,
-      nullable: 'NO',
-    },
-  })
-  slotId: number;
-
-  @property({
-    type: 'number',
-    required: true,
-    scale: 0,
-    postgresql: {
-      columnName: 'centre_id',
-      dataType: 'integer',
-      dataLength: null,
-      dataPrecision: null,
-      dataScale: 0,
-      nullable: 'NO',
-    },
-  })
-  centreId: number;
-
-  @property({
-    type: 'number',
-    required: true,
-    scale: 0,
-    postgresql: {
-      columnName: 'consumer_id',
-      dataType: 'integer',
-      dataLength: null,
-      dataPrecision: null,
-      dataScale: 0,
-      nullable: 'NO',
-    },
-  })
-  consumerId: number;
-
   @property({
     type: 'string',
     required: true,
@@ -142,6 +99,62 @@ export class Bookings extends Entity {
   })
   status?: string;
 
+  @belongsTo(
+    () => Centres,
+    {},
+    {
+      type: 'number',
+      required: true,
+      scale: 0,
+      postgresql: {
+        columnName: 'centre_id',
+        dataType: 'integer',
+        dataLength: null,
+        dataPrecision: null,
+        dataScale: 0,
+        nullable: 'NO',
+      },
+    },
+  )
+  centreId: number;
+
+  @belongsTo(
+    () => Consumers,
+    {},
+    {
+      type: 'number',
+      required: true,
+      scale: 0,
+      postgresql: {
+        columnName: 'consumer_id',
+        dataType: 'integer',
+        dataLength: null,
+        dataPrecision: null,
+        dataScale: 0,
+        nullable: 'NO',
+      },
+    },
+  )
+  consumerId: number;
+
+  @belongsTo(
+    () => Slots,
+    {},
+    {
+      type: 'number',
+      required: true,
+      scale: 0,
+      postgresql: {
+        columnName: 'slot_id',
+        dataType: 'integer',
+        dataLength: null,
+        dataPrecision: null,
+        dataScale: 0,
+        nullable: 'NO',
+      },
+    },
+  )
+  slotId: number;
   // Define well-known properties here
 
   // Indexer property to allow additional data

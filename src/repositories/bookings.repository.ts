@@ -1,18 +1,61 @@
-import {inject} from '@loopback/core';
-import {DefaultCrudRepository} from '@loopback/repository';
+import {inject, Getter} from '@loopback/core';
+import {
+  DefaultCrudRepository,
+  repository,
+  BelongsToAccessor,
+} from '@loopback/repository';
 import moment from 'moment-timezone';
 import {VaccinationDbDataSource} from '../datasources';
-import {Bookings, BookingsRelations} from '../models';
+import {
+  Bookings,
+  BookingsRelations,
+  Centres,
+  Consumers,
+  Slots,
+} from '../models';
+import {CentresRepository} from './centres.repository';
+import {ConsumersRepository} from './consumers.repository';
+import {SlotsRepository} from './slots.repository';
 
 export class BookingsRepository extends DefaultCrudRepository<
   Bookings,
   typeof Bookings.prototype.id,
   BookingsRelations
 > {
+  public readonly centre: BelongsToAccessor<
+    Centres,
+    typeof Bookings.prototype.id
+  >;
+
+  public readonly consumer: BelongsToAccessor<
+    Consumers,
+    typeof Bookings.prototype.id
+  >;
+
+  public readonly slot: BelongsToAccessor<Slots, typeof Bookings.prototype.id>;
+
   constructor(
     @inject('datasources.vaccination_db') dataSource: VaccinationDbDataSource,
+    @repository.getter('CentresRepository')
+    protected centresRepositoryGetter: Getter<CentresRepository>,
+    @repository.getter('ConsumersRepository')
+    protected consumersRepositoryGetter: Getter<ConsumersRepository>,
+    @repository.getter('SlotsRepository')
+    protected slotsRepositoryGetter: Getter<SlotsRepository>,
   ) {
     super(Bookings, dataSource);
+    this.slot = this.createBelongsToAccessorFor('slot', slotsRepositoryGetter);
+    this.registerInclusionResolver('slot', this.slot.inclusionResolver);
+    this.consumer = this.createBelongsToAccessorFor(
+      'consumer',
+      consumersRepositoryGetter,
+    );
+    this.registerInclusionResolver('consumer', this.consumer.inclusionResolver);
+    this.centre = this.createBelongsToAccessorFor(
+      'centre',
+      centresRepositoryGetter,
+    );
+    this.registerInclusionResolver('centre', this.centre.inclusionResolver);
   }
 
   async getOccupiedSlots(
