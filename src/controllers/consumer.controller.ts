@@ -81,7 +81,7 @@ export class ConsumerController {
     return this.consumersRepository.create(consumers);
   }
 
-  @get('/consumers/{id}', {
+  @get('/consumers/{nationalId}', {
     tags: ['Consumer'],
     responses: {
       '200': {
@@ -94,13 +94,24 @@ export class ConsumerController {
       },
     },
   })
-  async findById(@param.path.number('id') id: number): Promise<Consumers> {
-    return this.consumersRepository.findById(id, {
+  async findById(
+    @param.path.string('nationalId') nationalId: string,
+  ): Promise<Consumers> {
+    const consumer = await this.consumersRepository.findOne({
+      where: {
+        nationalId: nationalId,
+      },
       include: [
         {
           relation: 'bookings',
         },
       ],
     });
+
+    if (!consumer) {
+      throw new HttpErrors.NotFound(`Consumer not found.`);
+    }
+
+    return consumer;
   }
 }

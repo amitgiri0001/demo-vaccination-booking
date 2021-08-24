@@ -39,11 +39,11 @@ describe('ConsumerController', () => {
     });
   });
 
-  describe('GET /consumers/{id}', () => {
-    it('should get consumer by id', async () => {
+  describe('GET /consumers/{nationalId}', () => {
+    it('should get consumer by nationalId', async () => {
       const consumerWithId = await consumersRepository.create(consumer);
 
-      await client.get(`/consumers/${consumerWithId.id}`).expect(200);
+      await client.get(`/consumers/${consumerWithId.nationalId}`).expect(200);
     });
   });
 });
