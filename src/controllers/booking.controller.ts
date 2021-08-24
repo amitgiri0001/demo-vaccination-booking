@@ -1,23 +1,12 @@
 import {inject} from '@loopback/core';
-import {repository} from '@loopback/repository';
-import {
-  get,
-  getModelSchemaRef,
-  HttpErrors,
-  param,
-  post,
-  requestBody,
-} from '@loopback/rest';
-import {Bookings, BookingsWithRelations} from '../models';
-import {BookingsRepository} from '../repositories';
+import {getModelSchemaRef, HttpErrors, post, requestBody} from '@loopback/rest';
+import {Bookings} from '../models';
 import {BookingService} from '../services';
 
 export class BookingController {
   constructor(
     @inject(BookingService.BINDING_NAME)
     private bookingService: BookingService,
-    @repository(BookingsRepository)
-    private bookingsRepository: BookingsRepository,
   ) {}
 
   @post('/bookings', {
@@ -85,39 +74,5 @@ export class BookingController {
         throw error;
       }
     }
-  }
-
-  @get('/bookings/{consumerId}', {
-    tags: ['Bookings'],
-    responses: {
-      '200': {
-        description: 'Bookings model instance',
-        content: {
-          'application/json': {
-            schema: getModelSchemaRef(Bookings, {includeRelations: true}),
-          },
-        },
-      },
-    },
-  })
-  async findById(
-    @param.path.number('consumerId') consumerId: number,
-  ): Promise<BookingsWithRelations[]> {
-    return this.bookingsRepository.find({
-      where: {
-        consumerId: consumerId,
-      },
-      include: [
-        {
-          relation: 'centre',
-        },
-        {
-          relation: 'consumer',
-        },
-        {
-          relation: 'slot',
-        },
-      ],
-    });
   }
 }

@@ -104,6 +104,16 @@ export class ConsumerController {
       include: [
         {
           relation: 'bookings',
+          scope: {
+            include: [
+              {
+                relation: 'centre',
+              },
+              {
+                relation: 'slot',
+              },
+            ],
+          },
         },
       ],
     });
