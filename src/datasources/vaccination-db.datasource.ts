@@ -9,6 +9,7 @@ let config = {
   user: '',
   password: '',
   database: '',
+  url: '',
   ssl: {
     rejectUnauthorized: false,
   },
@@ -24,6 +25,7 @@ if (process.env.NODE_ENV === 'local') {
   config.user = process.env.USER as string;
   config.password = process.env.PASSWORD as string;
   config.database = process.env.DATABASE as string;
+  config.url = process.env.URI as string;
 }
 
 // Observe application's life cycle to disconnect the datasource when
