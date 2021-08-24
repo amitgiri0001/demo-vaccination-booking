@@ -1,34 +1,19 @@
 import {inject, lifeCycleObserver, LifeCycleObserver} from '@loopback/core';
 import {juggler} from '@loopback/repository';
 
-let config = {
+const config = {
   name: 'vaccination_db',
   connector: 'postgresql',
-  host: '',
+  url: 'postgres://nvjewjimuwgple:ff7278b7f2182ee7ece57728446d060992c66e3eab7e090fa348fdab06b9c09a@ec2-44-194-112-166.compute-1.amazonaws.com:5432/d16ha6rnoe5383',
+  host: 'ec2-44-194-112-166.compute-1.amazonaws.com',
   port: 5432,
-  user: '',
-  password: '',
-  database: '',
-  url: '',
+  user: 'nvjewjimuwgple',
+  password: 'ff7278b7f2182ee7ece57728446d060992c66e3eab7e090fa348fdab06b9c09a',
+  database: 'd16ha6rnoe5383',
   ssl: {
     rejectUnauthorized: false,
   },
 };
-
-let dbConfig;
-if (process.env.NODE_ENV === 'local') {
-  dbConfig = require('../../dbConfig.json');
-  config = {...config, ...dbConfig};
-} else {
-  config.host = process.env.HOST as string;
-  config.user = process.env.USER as string;
-  config.password = process.env.PASSWORD as string;
-  config.database = process.env.DATABASE as string;
-  config.url = process.env.URI as string;
-}
-
-console.log("config ***************************",config);
-
 
 // Observe application's life cycle to disconnect the datasource when
 // application is stopped. This allows the application to be shut down
