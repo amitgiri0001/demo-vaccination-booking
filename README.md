@@ -5,6 +5,10 @@
 
 The repository is an attempt to replicate a vaccination booking system.
 
+# Document
+- [Postman docs]([https://link](https://documenter.getpostman.com/view/12539300/TzzGFYJ3))
+- [Swagger docs](https://vacc-api.herokuapp.com/explorer/#/)
+
 # Development
 ## Install dependencies
 
