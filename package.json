@@ -34,6 +34,7 @@
     "openapi-spec": "node ./dist/openapi-spec",
     "prestart": "npm run rebuild",
     "start": "TZ='utc' node -r source-map-support/register .",
+    "start:local": "NODE_ENV=local npm rum start",
     "clean": "lb-clean dist *.tsbuildinfo .eslintcache",
     "rebuild": "npm run clean && npm run build"
   },

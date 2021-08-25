@@ -7,6 +7,7 @@ import {
   post,
   requestBody,
 } from '@loopback/rest';
+import moment from 'moment';
 import {Consumers} from '../models';
 import {ConsumersRepository} from '../repositories';
 
@@ -27,7 +28,7 @@ export class ConsumerController {
           },
         },
       },
-      '400': {
+      '409': {
         description: 'Consumer identity already exits.',
         content: {
           'application/json': {
@@ -56,11 +57,11 @@ export class ConsumerController {
         },
       },
     })
-    consumers: Omit<Consumers, 'id'>,
+    consumer: Omit<Consumers, 'id'>,
   ): Promise<Consumers> {
-    const isExistingConsumer = await this.consumersRepository.findOne({
+    const consumerDetails = await this.consumersRepository.findOne({
       where: {
-        nationalId: consumers.nationalId,
+        nationalId: consumer.nationalId,
       },
       include: [
         {
@@ -69,16 +70,18 @@ export class ConsumerController {
       ],
     });
 
-    if (isExistingConsumer) {
-      throw Object.assign(
-        new HttpErrors.BadRequest(`Identity already exits.`),
-        {
-          code: 'CONSUMER_IDENTITY_EXITS',
-        },
-      );
+    if (
+      consumerDetails &&
+      moment(consumer.birthday).isSame(consumerDetails.birthday)
+    ) {
+      return consumerDetails;
+    } else if (consumerDetails) {
+      throw Object.assign(new HttpErrors.Conflict(`Id already exits`), {
+        code: `CONSUMER_IDENTITY_EXITS`,
+      });
     }
 
-    return this.consumersRepository.create(consumers);
+    return this.consumersRepository.create(consumer);
   }
 
   @get('/consumers/{nationalId}', {

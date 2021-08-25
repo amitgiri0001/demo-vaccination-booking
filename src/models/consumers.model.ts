@@ -100,6 +100,20 @@ export class Consumers extends Entity {
 
   @hasMany(() => Bookings, {keyTo: 'consumerId'})
   bookings: Bookings[];
+
+  @property({
+    type: 'string',
+    required: true,
+    postgresql: {
+      columnName: 'birthday',
+      dataType: 'date',
+      dataLength: null,
+      dataPrecision: null,
+      dataScale: null,
+      nullable: 'NO',
+    },
+  })
+  birthday: string;
   // Define well-known properties here
 
   // Indexer property to allow additional data
