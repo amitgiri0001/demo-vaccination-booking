@@ -9,9 +9,14 @@ The repository is an attempt to replicate a vaccination booking system.
 - [Postman docs]([https://link](https://documenter.getpostman.com/view/12539300/TzzGFYJ3))
 - [Swagger docs](https://vacc-api.herokuapp.com/explorer/#/)
 
-> The server turn down the instance when there is no request for a certain duration to save the cost. It takes about 3-4 minutes for the server to warm up again after getting first request.
+> The server turns down the instance when there is no request for a certain duration to save the cost. It takes about 3-4 minutes for the server to warm up again after getting first request.
 
-# Development
+# Frontend
+[React app for vaccination-booking](https://github.com/amitgiri0001/demo-vaccination-booking-ui)
+
+![demo](https://github.com/amitgiri0001/demo-vaccination-booking-ui/blob/7fe950ce552fb0042ef1d12222baa2e0b4c751c8/demo/Vaccination_dmeo_gif.gif?raw=true)
+
+# API Development
 ## Install dependencies
 
 Run the following to install packages:
