@@ -1,5 +1,7 @@
 # vaccination-appointment-booking
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/25e3e783cc444a8aa92dd4d7f14ea11b)](https://app.codacy.com/gh/amitgiri0001/demo-vaccination-booking?utm_source=github.com&utm_medium=referral&utm_content=amitgiri0001/demo-vaccination-booking&utm_campaign=Badge_Grade_Settings)
+
 The repository is an attempt to replicate a vaccination booking system.
 
 # Development
