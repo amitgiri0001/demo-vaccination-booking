@@ -18,7 +18,16 @@ The repository is an attempt to replicate a vaccination booking system.
 ![demo](https://github.com/amitgiri0001/demo-vaccination-booking-ui/blob/7fe950ce552fb0042ef1d12222baa2e0b4c751c8/demo/Vaccination_dmeo_gif.gif?raw=true)
 
 # Requirement Analysis
-- [Requirement Analysis doc](Requirement_analysis.md)
+- [Requirement Analysis and Assumptions doc](Requirement_analysis.md)
+
+# User flow diagram
+![user flow](user_flow.png)
+
+# ER diagram
+![ER diagram](vaccination_db_er.png)
+
+# Code coverage
+![Code cov](Code%20coverage.png)
 # API Development
 ## Install dependencies
 
@@ -82,11 +91,4 @@ npm run lint:fix
 npm test
 ```
 
-# User flow diagram
-![user flow](user_flow.png)
 
-# ER diagram
-![ER diagram](vaccination_db_er.png)
-
-# Code coverage
-![Code cov](Code%20coverage.png)
