@@ -7,7 +7,9 @@ import {Bookings} from './bookings.model';
     idInjection: false,
     postgresql: {schema: 'public', table: 'consumers'},
     scope: {
-      deleteAt: null,
+      where: {
+        deletedAt: null,
+      },
     },
   },
 })

@@ -5,7 +5,9 @@ import {Entity, model, property} from '@loopback/repository';
     idInjection: false,
     postgresql: {schema: 'public', table: 'staff'},
     scope: {
-      deleteAt: null,
+      where: {
+        deletedAt: null,
+      },
     },
   },
 })

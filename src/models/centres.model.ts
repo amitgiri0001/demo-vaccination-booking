@@ -6,7 +6,9 @@ import moment from 'moment';
     idInjection: false,
     postgresql: {schema: 'public', table: 'centres'},
     scope: {
-      deleteAt: null,
+      where: {
+        deletedAt: null,
+      },
     },
   },
 })

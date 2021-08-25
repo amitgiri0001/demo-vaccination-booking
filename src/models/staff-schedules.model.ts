@@ -9,7 +9,9 @@ import moment from 'moment';
       table: 'staff_schedules',
     },
     scope: {
-      deletedAt: null,
+      where: {
+        deletedAt: null,
+      },
     },
   },
 })

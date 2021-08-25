@@ -9,7 +9,9 @@ import {Slots} from './slots.model';
     idInjection: false,
     postgresql: {schema: 'public', table: 'bookings'},
     scope: {
-      deleteAt: null,
+      where: {
+        deletedAt: null,
+      },
     },
   },
 })

@@ -6,6 +6,11 @@ import moment from 'moment';
     idInjection: false,
     postgresql: {schema: 'public', table: 'slots'},
     strict: false,
+    scope: {
+      where: {
+        deletedAt: null,
+      },
+    },
   },
 })
 export class Slots extends Entity {

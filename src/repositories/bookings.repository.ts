@@ -1,8 +1,8 @@
-import {inject, Getter} from '@loopback/core';
+import {Getter, inject} from '@loopback/core';
 import {
+  BelongsToAccessor,
   DefaultCrudRepository,
   repository,
-  BelongsToAccessor,
 } from '@loopback/repository';
 import moment from 'moment-timezone';
 import {VaccinationDbDataSource} from '../datasources';
@@ -71,6 +71,7 @@ export class BookingsRepository extends DefaultCrudRepository<
         where
           booking_date = $3
           and centre_id = $1
+          and deleted_at is null
         group by slot_id
           having count(slot_id) > $2
     `,

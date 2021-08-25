@@ -1,12 +1,24 @@
 import {inject} from '@loopback/core';
-import {getModelSchemaRef, HttpErrors, post, requestBody} from '@loopback/rest';
+import {repository} from '@loopback/repository';
+import {
+  del,
+  getModelSchemaRef,
+  HttpErrors,
+  param,
+  post,
+  requestBody,
+} from '@loopback/rest';
+import moment from 'moment';
 import {Bookings} from '../models';
+import {BookingsRepository} from '../repositories';
 import {BookingService} from '../services';
 
 export class BookingController {
   constructor(
     @inject(BookingService.BINDING_NAME)
     private bookingService: BookingService,
+    @repository(BookingsRepository)
+    private bookingsRepository: BookingsRepository,
   ) {}
 
   @post('/bookings', {
@@ -74,5 +86,19 @@ export class BookingController {
         throw error;
       }
     }
+  }
+
+  @del('/bookings/{id}', {
+    tags: ['Bookings'],
+    responses: {
+      '204': {
+        description: 'Booking DELETE success',
+      },
+    },
+  })
+  async deleteById(@param.path.number('id') id: number): Promise<void> {
+    return this.bookingsRepository.updateById(id, {
+      deletedAt: moment().utc().format(),
+    });
   }
 }
