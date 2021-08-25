@@ -12,10 +12,13 @@ The repository is an attempt to replicate a vaccination booking system.
 > The server turns down the instance when there is no request for a certain duration to save the cost. It takes about 3-4 minutes for the server to warm up again after getting first request.
 
 # Frontend
-[React app for vaccination-booking](https://github.com/amitgiri0001/demo-vaccination-booking-ui)
+- [Repository](https://github.com/amitgiri0001/demo-vaccination-booking-ui) 
+- [Try it here](http://vacc-ui.herokuapp.com/) 
 
 ![demo](https://github.com/amitgiri0001/demo-vaccination-booking-ui/blob/7fe950ce552fb0042ef1d12222baa2e0b4c751c8/demo/Vaccination_dmeo_gif.gif?raw=true)
 
+# Requirement Analysis
+- [Requirement Analysis doc](Requirement_analysis.md)
 # API Development
 ## Install dependencies
 
