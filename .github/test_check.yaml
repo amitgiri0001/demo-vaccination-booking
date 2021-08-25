@@ -1,0 +1,19 @@
+name: Test check
+on:
+  push:
+    branches:
+      - main
+jobs:
+  setup:
+    name: Checkout | Setup NodeJs | Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup NodeJS
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+      - name: Run test cases
+        run: |
+          npm test
