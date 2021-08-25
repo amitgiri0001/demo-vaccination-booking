@@ -5,6 +5,9 @@
 
 The repository is an attempt to replicate a vaccination booking system.
 
+# Deployment
+CI/CD is configured with github action and heroku for auto check and deployment.
+
 # API Documentation
 - [Postman docs](https://documenter.getpostman.com/view/12539300/TzzGFYJ3)
 - [Swagger docs](https://vacc-api.herokuapp.com/explorer/#/)
