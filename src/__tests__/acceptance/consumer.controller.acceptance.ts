@@ -1,4 +1,5 @@
 import {Client} from '@loopback/testlab';
+import moment from 'moment';
 import {VaccinationApp} from '../..';
 import {Consumers} from '../../models';
 import {ConsumersRepository} from '../../repositories';
@@ -16,6 +17,7 @@ describe('ConsumerController', () => {
     consumer = {
       nationalId: 'ABC123',
       name: 'Tony Stark',
+      birthday: moment().utc().subtract(12, 'y').format('YYYY-MM-DD'),
     };
   });
 
@@ -28,10 +30,10 @@ describe('ConsumerController', () => {
   });
 
   describe('POST /consumers', () => {
-    it('should check for consumer existence to avoid duplication', async () => {
+    it('should return consumer if it exits with same dob and national id', async () => {
       await consumersRepository.create(consumer);
 
-      await client.post('/consumers').send(consumer).expect(400);
+      await client.post('/consumers').send(consumer).expect(200);
     });
 
     it('should be able to create new consumer if not exist already', async () => {
