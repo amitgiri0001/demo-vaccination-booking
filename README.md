@@ -75,4 +75,4 @@ npm test
 ![ER diagram](vaccination_db_er.png)
 
 # Code coverage
-![Code cov](code_coverage.png)
+![Code cov](Code%20coverage.png)
