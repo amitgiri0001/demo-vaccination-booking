@@ -69,7 +69,7 @@ npm test
 ![user flow](user_flow.png)
 
 # ER diagram
-![ER diagram](Vaccination_db_er_digram.png)
+![ER diagram](vaccination_db_er.png)
 
 # Code coverage
 ![Code cov](code_coverage.png)

@@ -16,4 +16,5 @@ jobs:
           node-version: '12'
       - name: Run test cases
         run: |
+          npm ci
           npm test
