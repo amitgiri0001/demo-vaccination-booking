@@ -6,7 +6,7 @@
 The repository is an attempt to replicate a vaccination booking system.
 
 # API Documentation
-- [Postman docs]([https://link](https://documenter.getpostman.com/view/12539300/TzzGFYJ3))
+- [Postman docs](https://documenter.getpostman.com/view/12539300/TzzGFYJ3)
 - [Swagger docs](https://vacc-api.herokuapp.com/explorer/#/)
 
 > The server turns down the instance when there is no request for a certain duration to save the cost. It takes about 3-4 minutes for the server to warm up again after getting first request.
